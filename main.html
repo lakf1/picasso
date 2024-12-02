@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="picasso-face.png">
+    <title>PICASSO FACE</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 10px 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                /* Long diagonal strokes */
+                linear-gradient(45deg, transparent 47%, rgba(255, 215, 0, 0.03) 47.5%, transparent 48.5%) 0 0,
+                linear-gradient(45deg, transparent 48%, rgba(255, 215, 0, 0.02) 48.5%, transparent 49.5%) 20px 0,
+                linear-gradient(-45deg, transparent 47%, rgba(255, 215, 0, 0.03) 47.5%, transparent 48.5%) 0 0,
+                
+                /* Medium strokes at different angles */
+                linear-gradient(65deg, transparent 47%, rgba(255, 215, 0, 0.04) 47.5%, transparent 48.5%) 0 0,
+                linear-gradient(-65deg, transparent 47%, rgba(255, 215, 0, 0.04) 47.5%, transparent 48.5%) 0 0,
+                
+                /* Curved elements */
+                radial-gradient(circle at 50% 50%, transparent 45%, rgba(255, 215, 0, 0.03) 46%, transparent 47%) 0 0,
+                radial-gradient(circle at 50% 50%, transparent 55%, rgba(255, 215, 0, 0.03) 56%, transparent 57%) 0 0,
+                radial-gradient(circle at 50% 50%, transparent 65%, rgba(255, 215, 0, 0.03) 66%, transparent 67%) 0 0,
+                
+                /* Large circles */
+                radial-gradient(circle at 15% 15%, rgba(255, 215, 0, 0.03) 0%, transparent 35%),
+                radial-gradient(circle at 85% 25%, rgba(255, 215, 0, 0.04) 0%, transparent 45%),
+                radial-gradient(circle at 75% 85%, rgba(255, 215, 0, 0.03) 0%, transparent 40%),
+                
+                /* Medium circles */
+                radial-gradient(circle at 45% 35%, rgba(255, 215, 0, 0.02) 0%, transparent 25%),
+                radial-gradient(circle at 65% 45%, rgba(255, 215, 0, 0.03) 0%, transparent 20%);
+            
+            background-size: 
+                800px 800px,
+                780px 780px,
+                820px 820px,
+                600px 600px,
+                620px 620px,
+                1200px 1200px,
+                1000px 1000px,
+                900px 900px,
+                100% 100%,
+                100% 100%,
+                100% 100%,
+                100% 100%,
+                100% 100%;
+            z-index: -1;
+            animation: artFloat 40s ease-in-out infinite;
+            transition: all 0.5s ease-out;
+        }
+
+        @keyframes artFloat {
+            0%, 100% { 
+                background-position: 
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0;
+                transform: scale(1);
+            }
+            50% { 
+                background-position: 
+                    400px 400px,
+                    390px 390px,
+                    410px 410px,
+                    300px 300px,
+                    310px 310px,
+                    600px 600px,
+                    500px 500px,
+                    450px 450px,
+                    2% 2%,
+                    -2% -2%,
+                    1% 1%,
+                    -1% -1%,
+                    2% -2%;
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes clickPulse {
+            0% {
+                transform: scale(1);
+                filter: hue-rotate(0deg) brightness(1);
+                background-position: 
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0;
+            }
+            50% {
+                transform: scale(1.05);
+                filter: hue-rotate(45deg) brightness(1.2);
+                background-position: 
+                    200px 100px,
+                    -180px -90px,
+                    190px -95px,
+                    150px 75px,
+                    -160px -80px,
+                    300px 150px,
+                    250px -125px,
+                    225px 112px,
+                    1% 0.5%,
+                    -1% -0.5%,
+                    0.5% 0.25%,
+                    -0.5% -0.25%,
+                    1% -0.5%;
+            }
+            100% {
+                transform: scale(1);
+                filter: hue-rotate(0deg) brightness(1);
+                background-position: 
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0;
+            }
+        }
+
+        .background-clicked::before {
+            animation: clickPulse 1s cubic-bezier(0.4, 0, 0.2, 1), artFloat 40s ease-in-out infinite;
+        }
+
+        .logo {
+            width: 300px;
+            height: auto;
+            margin: 40px 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 10px 0;
+        }
+
+        .coming-soon {
+            font-size: 2em;
+            margin: 20px 0;
+        }
+
+        .buy-section {
+            margin: 60px 0;
+        }
+
+        .buy-text {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .platform {
+            font-size: 2em;
+            color: #FFD700;
+            margin: 20px 0;
+            position: relative;
+            display: inline-block;
+            padding: 10px 30px;
+            border: 2px solid #FFD700;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .platform:hover {
+            background: #FFD700;
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 50px;
+            margin: 40px 0;
+            justify-content: center;
+        }
+
+        .social-btn {
+            position: relative;
+            padding: 25px 45px;
+            color: #FFFFFF;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8em;
+            letter-spacing: 3px;
+            font-weight: normal;
+            text-decoration: none;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        /* Main organic shape */
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 60% 40% 30% 70% / 40% 50% 60% 50%;
+            transform: rotate(-2deg);
+            transition: all 0.3s ease;
+        }
+
+        /* Secondary organic shape */
+        .social-btn::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 40% 60% 70% 30% / 50% 40% 50% 60%;
+            opacity: 0.5;
+            transform: rotate(3deg);
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover::before {
+            transform: rotate(2deg) scale(1.05);
+            border-radius: 40% 60% 60% 40% / 60% 40% 50% 50%;
+        }
+
+        .social-btn:hover::after {
+            transform: rotate(-3deg) scale(1.1);
+            opacity: 0.7;
+            border-radius: 60% 40% 40% 60% / 40% 60% 50% 50%;
+        }
+
+        /* Unique shapes for each button */
+        .social-btn:nth-child(1)::before {
+            border-radius: 70% 30% 50% 50% / 30% 50% 70% 60%;
+        }
+
+        .social-btn:nth-child(1)::after {
+            border-radius: 50% 50% 30% 70% / 60% 70% 30% 50%;
+        }
+
+        .social-btn:nth-child(2)::before {
+            border-radius: 40% 60% 30% 70% / 70% 30% 60% 40%;
+        }
+
+        .social-btn:nth-child(2)::after {
+            border-radius: 70% 30% 60% 40% / 40% 60% 30% 70%;
+        }
+
+        .social-btn:nth-child(3)::before {
+            border-radius: 60% 40% 70% 30% / 30% 70% 40% 60%;
+        }
+
+        .social-btn:nth-child(3)::after {
+            border-radius: 30% 70% 40% 60% / 60% 40% 70% 30%;
+        }
+
+        /* Text styling */
+        .social-btn span {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            transform: rotate(-2deg);
+            transition: all 0.3s ease;
+            color: #FFFFFF;
+            text-shadow: 
+                3px 3px 0 rgba(0, 0, 0, 0.4),
+                -1px -1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .social-btn:hover span {
+            transform: rotate(1deg);
+            letter-spacing: 4px;
+            color: #FFFFFF;
+        }
+
+        /* Make each button text slightly different */
+        .social-btn:nth-child(1) span {
+            transform: rotate(-3deg);
+        }
+
+        .social-btn:nth-child(2) span {
+            transform: rotate(0deg);
+        }
+
+        .social-btn:nth-child(3) span {
+            transform: rotate(-2deg);
+        }
+
+        /* Artistic accents */
+        .social-btn span::before,
+        .social-btn span::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .social-btn span::before {
+            top: -10px;
+            left: 30%;
+            transform: scale(0.8);
+        }
+
+        .social-btn span::after {
+            bottom: -10px;
+            right: 30%;
+            transform: scale(1.2);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .glow-text {
+            text-shadow: 0 0 10px #FFD700;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <img src="picasso-face.png" alt="Picasso Face" class="logo">
+    
+    <div class="video-container">
+        <video controls autoplay muted loop>
+            <source src="picasso-drawing.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <h1 class="glow-text">PICASSO FACE</h1>
+    <div class="coming-soon glow-text">COMING SOON!</div>
+    
+    <div class="buy-section">
+        <div class="buy-text glow-text">BUY</div>
+        <div class="buy-text glow-text">$PFACE</div>
+        <div class="buy-text">ON</div>
+        <div class="platform">pump.fun</div>
+    </div>
+
+    <div class="social-buttons">
+        <a href="#" class="social-btn">Twitter</a>
+        <a href="#" class="social-btn">Telegram</a>
+        <a href="#" class="social-btn">Discord</a>
+    </div>
+</body>
+</html>
